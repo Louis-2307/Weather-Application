@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Info Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon.png" />
+    <link rel="icon" type="image/png" href="assets/images/icon.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/images/icon.png" sizes="16x16" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" /> -->
+    <link rel="stylesheet" href="./components/onsen-css-components.min.css">
+    <link rel="stylesheet" type="text/css" href="src/app.css" />
+    <base href="https://louis-2307.github.io/Final-Project-Web/" target="_blank">
+  </head>
+
+  <body>
+      
+
+    <ons-navigator id="navigator" swipeable page="index.html"></ons-navigator>
+    <template id="index.html">
+      <ons-page id="home">
+        <ons-toolbar>
+          <div class="left"><ons-toolbar-button id="shareBtn" icon="md-share"></ons-toolbar-button></div>
+          <div class="center">Weather Forecast</div>
+          <div class="right"><ons-toolbar-button id="nextBtn">Next</ons-toolbar-button></div>
+        </ons-toolbar>
+        <ons-card >
+          <ons-input id="city" modifier="underbar" placeholder="Enter City Name" float></ons-input>
+          <ons-button id="locateBtn">Locate me!</ons-button>
+          <div id="imgContainer"></div>
+          <br>
+          <div class="title">Today's forecast </div>
+          <br>
+          <div id="imgContainer"></div>
+          <br>
+          <div class="content">
+            <ons-list id="detailsList">
+              <ons-list-header id="location">Location</ons-list-header>
+              <ons-list-header id="temp">Temperature</ons-list-header>
+              <ons-list-header id="feelslike">Feels-like</ons-list-header>
+              <ons-list-header id="wind">Wind</ons-list-header>    
+              <ons-list-header id="humidity">Humidity</ons-list-header>
+              <ons-list-header id="pressure">Pressure</ons-list-header>
+              <ons-list-header id="sunrise">Sunrise</ons-list-header>
+              <ons-list-header id="sunset">Sunset</ons-list-header>   
+            </ons-list> 
+          </div>
+        </ons-card>
+      </ons-page>
+    </template>
+  </body>
+
+  <script src="https://unpkg.com/localforage@1.10.0/dist/localforage.min.js"></script>
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="src/app.js"></script>
+  <script type="text/javascript">
+    const registerSW = async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          await navigator.serviceWorker.register(`${window.location.href}service-worker.js`);
+          console.log('Service Worker Registered');
+        } catch (e) {
+          console.error('Error registering Service Worker...', e);
+        }
+      }
+    };
+    registerSW();
+  </script>
+</html>
